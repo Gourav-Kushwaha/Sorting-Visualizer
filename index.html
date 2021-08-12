@@ -16,25 +16,39 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 
     <h1 style="text-align: center; ">Sorting Visualizer</h1>
+    
+    
+    
     <div>
         
     <button type="button" id="gen-array" class="btn btn-dark bubble sort Ga">Generate Array</button>
-
+    
+      
            
               <div class="xyz" id="sort-buttons">
              <button  type="button" id="bubble" class="btn btn-dark bubble sort" >Bubble Sort</button>
             <button  id="selection-sort" type="button" class="btn btn-dark bubble sort">Selection Sort</button>
             <button  id="insertion-sort" type="button" class="btn btn-dark bubble sort">Insertion Sort</button>
             <button  id="quick-sort" type="button" class="btn btn-dark bubble sort" class="alignment">Quick Sort</button>
+           
             
               </div>
+
+              
 
           
 
         </div>
 
+        
 
-        <div id="mkc" class="box">
+        <div class="slidecontainer">
+         <input type="range" min="1" max="500" value="250" class="slider" id="myRange">
+        </div>
+        <p><span style="color:black;font-weight:bold; margin-left: 8%; font-size: medium;">Speed</span></p>
+          
+
+        <div id="array" class="">
 
       
 

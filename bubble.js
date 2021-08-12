@@ -1,88 +1,68 @@
 
 
-var baaa = [];
-
-    
-var cont=document.getElementById("mkc");
+function swap(el1, el2) {
+    return new Promise((resolve) => {
   
-
-function r2s(arr, x, y){
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve('resolved');
-             arr[x].style.background = "blue";
-    arr[y].style.background = "blue";
-        }, 2000);
-      });
-
+        // For exchanging styles of two blocks
+        var temp = el1.style.transform;
+        el1.style.transform = el2.style.transform;
+        el2.style.transform = temp;
+  
+        window.requestAnimationFrame(function() {
+  
+            // For waiting for .25 sec
+            setTimeout(() => {
+                container.insertBefore(el2, el1);
+                resolve();
+            }, slider.value);
+        });
+    });
 }
 
 
-
-async function swap(arr, x, y){
-
-
- r2s(arr, x, y);
-
-
-const style1 = window.getComputedStyle(arr[x]);
-const style2 = window.getComputedStyle(arr[y]);
-const transform1 = style1.getPropertyValue("height");
-const transform2 = style2.getPropertyValue("height");
-arr[x].style.height = transform2;
-arr[y].style.height = transform1;
-
-
-    
-}
-
-
-
-function bubblesort(){
-    var i,j;
+async function BubbleSort(delay = 100) {
+    var blocks = document.querySelectorAll(".block");
   
-   
-
-    for(i =0 ; i<arr.length; i++){
-        for(j=0;j+1<arr.length;j++){
-           
-            var temp1 = parseInt( arr[j].style.height) ;
-            var temp2 = parseInt(arr[j+1].style.height);
-            //console.log(temp1,temp2);
-            
-
-            if(temp1>temp2){
-               
-               
-                swap(arr,j,j+1);
-                arr[j].style.background = "red";
-                arr[j+1].style.background = "red";
-                
-                
+    // BubbleSort Algorithm
+    for (var i = 0; i < blocks.length; i += 1) {
+        for (var j = 0; j < blocks.length - i - 1; j += 1) {
+  
+            // To change background-color of the
+            // blocks to be compared
+            blocks[j].style.backgroundColor = "#FF4949";
+            blocks[j + 1].style.backgroundColor = "#FF4949";
+  
+            // To wait for .1 sec
+            await new Promise((resolve) =>
+                setTimeout(() => {
+                    resolve();
+                }, delay)
+            );
+  
+            console.log("run");
+            var value1 = Number(blocks[j].childNodes[0].innerHTML);
+            var value2 = Number(blocks[j + 1]
+                        .childNodes[0].innerHTML);
+  
+            // To compare value of two blocks
+            if (value1 > value2) {
+                await swap(blocks[j], blocks[j + 1]);
+                blocks = document.querySelectorAll(".block");
             }
+  
+            // Changing the color to the previous one
+            blocks[j].style.backgroundColor = "#6b5b95";
+            blocks[j + 1].style.backgroundColor = "#6b5b95";
         }
+  
+        //changing the color of greatest element 
+        //found in the above traversal
+        blocks[blocks.length - i - 1]
+                .style.backgroundColor = "#13CE66";
     }
+}
+
+
+
 
  
-  
-   
-  // update_bars();
-  
-}
-
-/*
-function update_bars(){
-    cont.innerHTML="";
-    for(let k=0;k<arr.length;k++){
-        
-        var b = document.createElement('div');
-        b.className = "skills";
-        
-        b.style.height =arr[k].style.height;
-        
-        document.getElementById('mkc').appendChild(b); 
-
-    }
-}
-
-*/
